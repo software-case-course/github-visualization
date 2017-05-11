@@ -220,3 +220,47 @@ class Database(object):
                 conn.close()
                 return values
 
+##############################################################################################################################
+
+        ##查找总数量是否在表中
+        ##参数：name:total_count
+        ##返回值：存在:True
+        ##        否则：False
+        def find_total_data(self,name):
+                conn=mysql.connector.connect(user='root',password='eavG53JrMC',database='github_database',use_unicode=True)
+                cursor=conn.cursor()                    
+                cursor.execute('select * from total where name= %s',(name,))
+                values=cursor.fetchall()
+                if len(values)>0:
+                        n=True;
+                else:
+                        n=False;
+                cursor.close()
+                conn.close()
+                return n
+        
+        ##更新total表内容
+        ##参数：name:total_count
+        ##      number:对应语言的项目数量
+        def update_total_data(self,name,number):
+                conn=mysql.connector.connect(user='root',password='eavG53JrMC',database='github_database',use_unicode=True)
+                cursor=conn.cursor()
+                if self.find_total_data(name):
+                        cursor.execute('update total set number=%s where name=%s',[number,name])
+                else:
+                        cursor.execute('insert into total (name,number) values (%s,%s)',[name,number])
+                conn.commit()
+                cursor.close()
+                conn.close()
+
+        ##读取total表数据
+        ##返回：表中所有数据
+        def read_total_data(self):
+                conn=mysql.connector.connect(user='root',password='eavG53JrMC',database='github_database',use_unicode=True)
+                cursor=conn.cursor()
+                cursor.execute('select * from total')
+                values=cursor.fetchall()                
+                cursor.close()
+                conn.close()
+                return values
+
