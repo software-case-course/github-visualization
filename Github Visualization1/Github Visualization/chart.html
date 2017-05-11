@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>www.freemoban.com</title>
+<!-- Bootstrap Styles-->
+<link href="assets/css/bootstrap.css" rel="stylesheet" />
+ <!-- FontAwesome Styles-->
+<link href="assets/css/font-awesome.css" rel="stylesheet" />
+ <!-- Morris Chart Styles-->
+<link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+	<!-- Custom Styles-->
+<link href="assets/css/custom-styles.css" rel="stylesheet" />
+ <!-- Google Fonts-->
+<link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default top-navbar" role="navigation">
+            <div class="navbar-header">
+               
+                <a class="navbar-brand" href="index.html"><strong>Github</strong></a>
+              <form class="navbar-form navbar-right">
+              <input type="text" id="singleid" class="form-control" value="搜索..." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = '搜索...';}">
+            </form>  
+				
+		<div id="sideNav" href=""><i class="fa fa-caret-right"></i></div>
+            </div>
+
+            <ul class="nav navbar-top-links navbar-right">
+            </ul>
+        </nav>
+        <!--/. NAV TOP  -->
+        <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+
+                    <li>
+                        <a class="active-menu" href="index.html"><i class="fa fa-dashboard"></i> 首页</a>
+                    </li>
+                    <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> 项目<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="ui-elements.html"> 语言使用情况</a>
+                            </li>
+                            <li>
+                                <a href="chart.html"> 时间变化</a>
+                            </li>
+                            <li>
+                                <a href="table-c.html"> Top10项目</a>
+
+                            </li>
+                        </ul>
+                    </li>
+                     <li>
+                        <a href="#"><i class="fa fa-sitemap"></i> 用户<span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level">
+                            <li>
+                                <a href="form.html"> 活跃用户地区分布</a>
+                            </li>
+                            <li>
+                                <a href="table.html"> Top10用户</a>
+                            </li>
+                        </ul>
+                    </li>
+
+            </div>
+
+        </nav>
+	<!-- /. NAV SIDE  -->
+	<div id="page-wrapper">
+	  <div class="header"> 
+					<h1 class="page-header">
+						 年度项目建立情况
+					</h1>
+					<ol class="breadcrumb">
+				  <li><a href="#">Home</a></li>
+				  <li><a href="#">Charts</a></li>
+				  <li class="active">Data</li>
+				</ol> 
+								
+	</div>
+		<div id="main" style="height:400px"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
+				'echarts/chart/line' 
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+                var myChart = ec.init(document.getElementById('main')); 
+                
+                var option = {
+    tooltip : {
+        trigger: 'axis'
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType: {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    calculable : true,
+    legend: {
+        data:['数目']
+    },
+    xAxis : [
+        {
+            type : 'category',
+            data : ['2010','2011','2012','2013','2014','2015','2016','2017']
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            name : '数目',
+            axisLabel : {
+                formatter: '{value} 个'
+            }
+        }
+    ],
+
+    series : [
+        {
+            name:'数目',
+            type:'bar',
+            data:[100,150,196,155,200,270,300,257]
+        }
+
+    ]
+};
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option); 
+            }
+        );
+    </script>
+
+
+</body>
+</html>
