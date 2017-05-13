@@ -1,29 +1,44 @@
+# -*- coding: cp936 -*-
 import requests
 from datetime import date, time, datetime, timedelta
 import database
 
 class Save_repositories(object):
-    #è·å–æ¯å¹´é¡¹ç›®æ•°é‡æƒ…å†µ
-    #å‚æ•°ï¼šæ— 
-    #è¿”å›å€¼ï¼šæ— 
+    #»ñÈ¡Ã¿ÄêÏîÄ¿ÊıÁ¿Çé¿ö
+    #²ÎÊı£ºÎŞ
+    #·µ»ØÖµ£ºÎŞ
     def Get_repositories(self):
-        repositorie=['2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017']
+        repositorie=[]
         mydatabase=database.Database()
         now=datetime.now()
-        #è®¾å®šéš”30ç§’åå†è®¿é—®GitHub API
-        period=timedelta(days=0,hours=0,minutes=0,seconds=30)
+        now_time=now.strftime('%Y')
+        y=int(now_time)
+        i=0
+        yearData=2007
+        #»ñÈ¡2007µ½µ±Ç°Äê·İµÄ×Ö·û´®ÁĞ±í
+        while yearData<=y:
+            repositorie.append(str(yearData))
+            yearData=yearData+1
+            i=i+1
+        #Éè¶¨¸ô1·ÖÖÓºóÔÙ·ÃÎÊGitHub API
+        total_number=0
+        period=timedelta(days=0,hours=0,minutes=1,seconds=0)
         next_time=now+period
         strnext_time=next_time.strftime('%Y-%m-%d %H:%M:%S')
         i=0
-        while True and i<11:
+        l=len(repositorie)        
+        while True and i<l:
             iter_now=datetime.now()
             iter_now_time = iter_now.strftime('%Y-%m-%d %H:%M:%S')
             if str(iter_now_time)==str(strnext_time):
                 x=repositorie[i]
                 response=requests.get('https://api.github.com/search/repositories?q=created:'+x).json()
-                mydatabase.update_repositories_data(x,response['total_count'])
+                if response['incomplete_results']==False:
+                    mydatabase.update_repositories_data(x,response['total_count'])
+                    total_number=total_number+response['total_count']
+                    i=i+1
                 iter_now=datetime.now()
                 iter_time=iter_now+period
                 strnext_time = iter_time.strftime('%Y-%m-%d %H:%M:%S')
-                i=i+1
                 continue
+        mydatabase.update_total_data("total_count",total_number)
