@@ -12,6 +12,7 @@
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
      <!-- Google Fonts-->
    <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+	<script type="text/javascript" src=".\assets\js\jquery-1.10.2.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -70,13 +71,11 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper">
 		  <div class="header"> 
-                        <h1 class="page-header">
+                        <h4 class="page-header">
                            语言排行
-                        </h1>
+                        </h4>
 						<ol class="breadcrumb">
-					  <li><a href="#">Home</a></li>
-					  <li><a href="#">UI Elements </a></li>
-					  <li class="active">Data</li>
+					  
 					</ol> 
 									
 		</div>
@@ -99,39 +98,69 @@
             ],
             function (ec) {
                 // 基于准备好的dom，初始化echarts图表
-                var myChart = ec.init(document.getElementById('main')); 
-                
-                var option = {
-                    tooltip: {
-                        show: true
-                    },
-                    legend: {
-                        data:['语言使用热度']
-                    },
-                    xAxis : [
-                        {
-                            type : 'category',
-                            data : ["java","Javascript","C++","python","Ruby","C"]
-                        }
-                    ],
-                    yAxis : [
-                        {
-                            type : 'value'
-                        }
-                    ],
-                    series : [
-                        {
-                            "name":"使用人数",
-                            "type":"bar",
-                            "data":[5, 20, 40, 10, 10, 20]
-                        }
-                    ]
-                };
+                var myCharts= ec.init(document.getElementById('main'));  
+    
+         var option=({
+             title: {
+                 text: ''
+             },
+             tooltip: {},
+             legend: {
+                 data:['数目']
+             },
+             xAxis: {
+                 data: []
+             },
+             yAxis: {},
+             series: [{
+                 name: '数目',
+                 type: 'bar',
+                 data: []
+             }]
+         });
+         
+         myCharts.showLoading();    
+         
+         var names=[];    
+         var nums=[];    
+         
+         $.ajax({
+         type : "get",
+         async : true,            
+         url : "http://blue.crystalsight.cn:8000/search/languages",    
+         dataType : "json",        
+         success : function(result) {
+            // if(result){
+                    for(var i=0;i<result.length;i++){  
+                       names.push(result[i].repo);   
+                     }
+                    for(var i=0;i<result.length;i++){       
+                        nums.push(result[i].language);   
+                      }
+			// }
+                    myCharts.hideLoading();    
+                    myCharts.setOption({        
+                        xAxis: {
+                            data: nums
+                        },
+						
+                        series: [{
+                            name: '数目',
+                            data: names
+                        }]
+                    });
+                    
+myCharts.setOption(option);
+         
+        },
+		
+         error : function(errorMsg) {
         
-                // 为echarts对象加载数据 
-                myChart.setOption(option); 
-            }
-        );
+         alert("数据无法加载");
+         myCharts.hideLoading();
+         }
+    });
+			})
     </script>
 
  
