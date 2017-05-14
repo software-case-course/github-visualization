@@ -14,6 +14,7 @@
 <link href="assets/css/custom-styles.css" rel="stylesheet" />
  <!-- Google Fonts-->
 <link href='http://fonts.useso.com/css?family=Open+Sans' rel='stylesheet' type='text/css' />
+<script type="text/javascript" src=".\assets\js\jquery-1.10.2.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -72,13 +73,13 @@
 	<!-- /. NAV SIDE  -->
 	<div id="page-wrapper">
 	  <div class="header"> 
-					<h1 class="page-header">
+					<h4 class="page-header">
 						 年度项目建立情况
-					</h1>
+					</h4>
 					<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
-				  <li><a href="#">Charts</a></li>
-				  <li class="active">Data</li>
+				  <li><a href="#">首页</a></li>
+				  <li><a href="#">时间变化</a></li>
+				  <li class="active">图表</li>
 				</ol> 
 								
 	</div>
@@ -100,11 +101,13 @@
                 'echarts/chart/bar', // 使用柱状图就加载bar模块，按需加载
 				'echarts/chart/line' 
             ],
+			
             function (ec) {
                 // 基于准备好的dom，初始化echarts图表
+				
                 var myChart = ec.init(document.getElementById('main')); 
-                
-                var option = {
+             
+               var option={
     tooltip : {
         trigger: 'axis'
     },
@@ -124,34 +127,63 @@
     },
     xAxis : [
         {
-            type : 'category',
-            data : ['2010','2011','2012','2013','2014','2015','2016','2017']
+            data:[]
         }
     ],
-    yAxis : [
-        {
-            type : 'value',
-            name : '数目',
-            axisLabel : {
-                formatter: '{value} 个'
-            }
-        }
-    ],
+    yAxis : {},
 
     series : [
         {
             name:'数目',
             type:'bar',
-            data:[100,150,196,155,200,270,300,257]
+            data:[]
         }
 
     ]
 };
+        myChart.showLoading();    
+         myChart.setOption(option);
+         var names=[];    
+         var nums=[];    
+         
+         $.ajax({
+         type : "get",
+         async : true,            
+         url : "http://blue.crystalsight.cn:8000/search/repositories",    
+         dataType : "json",        
+         success : function(result) {
+            // if(result){
+                    for(var i=0;i<result.length;i++){  
+                       names.push(result[i].repo);   
+                     }
+                    for(var i=0;i<result.length;i++){       
+                        nums.push(result[i].year);   
+                      }
+			// }
+                    myChart.hideLoading();    
+                    myChart.setOption({        
+                        xAxis: {
+                            data: nums
+                        },
+						
+                        series: [{
+                            name: '数目',
+                            data: names
+                        }]
+                    });
+                    
+myChart.setOption(option);
+         
+        },
+		
+         error : function(errorMsg) {
         
-                // 为echarts对象加载数据 
-                myChart.setOption(option); 
-            }
-        );
+         alert("数据无法加载");
+         myCharts.hideLoading();
+		 }
+    });
+			})
+
     </script>
 
 
