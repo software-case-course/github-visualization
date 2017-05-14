@@ -15,6 +15,7 @@
     <link href="assets/css/custom-styles.css" rel="stylesheet" />
   <script type="text/javascript" src='.\assets\echarts.js'></script>  
     <script src='.\assets\world.js'></script>
+ <script type="text/javascript" src=".\assets\js\jquery-1.10.2.js"></script>
     <link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css"> <script> 
 function setValue(){
  var control=document.getElementById ("singleid").value;
@@ -183,12 +184,12 @@ function setValue(){
                             项目时间变化
                         </div>
                       <div id="main" style="height:600px"></div>   
-                  <script>  
+                   <script>  
       var firstchart = echarts.init(document.getElementById('main'));  
       var options = {
    title : {
-        text: '南丁格尔玫瑰图',
-        subtext: '纯属虚构',
+        text: '',
+        subtext: '',
         x:'center'
     },
     tooltip : {
@@ -198,7 +199,7 @@ function setValue(){
     legend: {
         x : 'center',
         y : 'bottom',
-        data:['2010','2011','2012','2013','2014','2015','2016','2017']
+        data:[]
     },
     toolbox: {
         show : true,
@@ -217,36 +218,27 @@ function setValue(){
     series : [
         {
             name:'半径模式',
-            type:'pie',
-            radius : [20, 110],
-            center : ['25%', '50%'],
+         type:'pie',
+           radius : [20, 110],
+           center : ['25%', '50%'],
             roseType : 'radius',
-            label: {
+           label: {
                 normal: {
-                    show: false
-                },
-                emphasis: {
+                   show: false
+             },
+               emphasis: {
                     show: true
                 }
-            },
+           },
             lableLine: {
                 normal: {
                     show: false
                 },
-                emphasis: {
-                    show: true
-                }
-            },
-            data:[
-               {value:10, name:'2010'},
-                {value:5, name:'2011'},
-                {value:15, name:'2012'},
-                {value:25, name:'2013'},
-                {value:20, name:'2014'},
-                {value:35, name:'2015'},
-                {value:30, name:'2016'},
-                {value:40, name:'2017'}
-            ]
+               emphasis: {
+                   show: true
+             }
+           },
+            data:[]
         },
         {
             name:'面积模式',
@@ -254,23 +246,66 @@ function setValue(){
             radius : [30, 110],
             center : ['75%', '50%'],
             roseType : 'area',
-            data:[
-                {value:10, name:'2010'},
-                {value:5, name:'2011'},
-                {value:15, name:'2012'},
-                {value:25, name:'2013'},
-                {value:20, name:'2014'},
-                {value:35, name:'2015'},
-                {value:30, name:'2016'},
-                {value:40, name:'2017'}
-            ]
+            data:[]
         }
     ]
 };
 
-firstchart.setOption(options);
-</script>
 
+         firstchart.showLoading();    
+         firstchart.setOption(options);
+         var names=[];    
+         var nums=[]; 
+		 var res=[];   
+         $.ajax({
+         type : "get",
+         async : true,            
+         url : "http://blue.crystalsight.cn:8000/search/repositories",    
+         dataType : "json",        
+         success : function(result){
+           
+                    for(var i=0;i<result.length;i++){  
+                       nums.push(result[i].repo);   
+                     }
+                    for(var i=0;i<result.length;i++){       
+                        names.push(result[i].year);   	
+                      }
+					   for(var i=0;i<result.length;i++) {  
+                               res.push({  
+                                value:nums[i], 
+                                name:names[i]
+                                });
+								alert(res[i].value);
+								alert(res[i].name);
+					   }
+                    firstchart.hideLoading();    
+                    firstchart.setOption({        
+                        legend: {
+                            data: names
+                        },
+                        series: [{
+                            name: '数目',
+                            data: res
+                        },
+						{
+							name:'数目',
+							data:res
+							
+						}]
+                    });
+                    
+
+         
+        },
+		
+        error : function(errorMsg) {
+        
+         alert("数据无法加载");
+         firstchart.hideLoading();
+		 }
+    });
+			
+</script>
                 
             </div>
        </div>
