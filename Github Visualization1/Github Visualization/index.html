@@ -91,90 +91,104 @@ function setValue(){
                 <!-- /. ROW  -->
 	
 		<div class="row">
+        <div class="col-md-12">
+       <div class="panel panel-default">
         <div class="panel-heading">
         语言使用情况
         </div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-                
-					<div class="panel-body easypiechart-panel">
-						<h4>Java</h4>
-						<div class="easypiechart" id="easypiechart-blue" data-percent="82" ><span class="percent">82%</span>
-						</div>
-                        
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>C++</h4>
-						<div class="easypiechart" id="easypiechart-orange" data-percent="55" ><span class="percent">55%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Python</h4>
-						<div class="easypiechart" id="easypiechart-teal" data-percent="84" ><span class="percent">84%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>JavaScrip</h4>
-						<div class="easypiechart" id="easypiechart-red" data-percent="46" ><span class="percent">46%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div><!--/.row-->
-			
-		  <!-- /. ROW  -->
-	
-		<div class="row">
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-                
-                
-					<div class="panel-body easypiechart-panel">
-						<h4>Java</h4>
-						<div class="easypiechart" id="easypiechart-lue" data-percent="82" ><span class="percent">82%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>C++</h4>
-						<div class="easypiechart" id="easypiechart-range" data-percent="55" ><span class="percent">55%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>Python</h4>
-						<div class="easypiechart" id="easypiechart-eal" data-percent="84" ><span class="percent">84%</span>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-xs-6 col-md-3">
-				<div class="panel panel-default">
-					<div class="panel-body easypiechart-panel">
-						<h4>JavaScrip</h4>
-						<div class="easypiechart" id="easypiechart-ed" data-percent="46" ><span class="percent">46%</span>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div id="second" style="height:600px"></div>
+        <script>
+		var mychart_second=echarts.init(document.getElementById('second'));
+		var option_second = {
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:[]
+    },
+    series: [
+        {
+            name:'语言',
+            type:'pie',
+            radius: ['50%', '70%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center'
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: '30',
+                        fontWeight: 'bold'
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[]
+        }
+    ]
+};
+mychart_second.showLoading();    
+         mychart_second.setOption(option_second);
+         var names=[];    
+         var nums=[]; 
+		 var res=[];   
+         $.ajax({
+         type : "get",
+         async : true,            
+         url : "http://blue.crystalsight.cn:8000/search/languages",    
+         dataType : "json",        
+         success : function(result){
+           
+                    for(var i=0;i<result.length;i++){  
+                       nums.push(result[i].repo);   
+                     }
+                    for(var i=0;i<result.length;i++){       
+                        names.push(result[i].language);   	
+                      }
+					   for(var i=0;i<result.length;i++) {  
+                               res.push({  
+                                value:nums[i], 
+                                name:names[i]
+                                });
+								
+					   }
+                    mychart_second.hideLoading();  
+					 
+                    mychart_second.setOption({        
+                        legend: {
+                            data: names
+                        },
+                        series: [{
+                           
+                            data: res
+                        }]
+                    });
+                    
+
+         
+        },
+		
+         error : function(errorMsg) {
+        
+         alert("数据无法加载");
+         mychart_second.hideLoading();
+		 }
+    });
+
+		</script>
+		</div>
+				
+		</div>
 		</div>
 				
                 <div class="row">
