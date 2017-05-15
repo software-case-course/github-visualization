@@ -268,41 +268,41 @@ mychart_second.showLoading();
 
          firstchart.showLoading();    
          firstchart.setOption(options);
-         var names=[];    
-         var nums=[]; 
-		 var res=[];   
+         var names_s=[];    
+         var nums_s=[]; 
+         var res_s=[];   
          $.ajax({
          type : "get",
          async : true,            
          url : "http://blue.crystalsight.cn:8000/search/repositories",    
          dataType : "json",        
-         success : function(result){
+         success : function(result_s){
            
-                    for(var i=0;i<result.length;i++){  
-                       nums.push(result[i].repo);   
+                    for(var i=0;i<result_s.length;i++){  
+                       nums_s.push(result_s[i].repo);   
                      }
-                    for(var i=0;i<result.length;i++){       
-                        names.push(result[i].year);   	
+                    for(var i=0;i<result_s.length;i++){       
+                        names_s.push(result_s[i].year);   	
                       }
-					   for(var i=0;i<result.length;i++) {  
-                               res.push({  
-                                value:nums[i], 
-                                name:names[i]
+					   for(var i=0;i<result_s.length;i++) {  
+                               res_s.push({  
+                                value:nums_s[i], 
+                                name:names_s[i]
                                 });
 								
 					   }
                     firstchart.hideLoading();    
                     firstchart.setOption({        
                         legend: {
-                            data: names
+                            data: names_s
                         },
                         series: [{
                             name: '数目',
-                            data: res
+                            data: res_s
                         },
 						{
 							name:'数目',
-							data:res
+							data:res_s
 							
 						}]
                     });
