@@ -114,13 +114,13 @@ class Database(object):
         ##参数：myid:id号
         ##      name:项目名称
         ##      address:项目网址
-        def update_projects_data(self,myid,name,address):
+        def update_projects_data(self,myid,repo_name,repo_url,stargazers_count,user_login,user_url):
                 conn=mysql.connector.connect(user='root',password='eavG53JrMC',database='github_database',use_unicode=True)
                 cursor=conn.cursor()
                 if self.find_projects_data(myid):
-                        cursor.execute('update projects set name=%s,address=%s where id=%s',[name,address,myid])
+                        cursor.execute('update projects set id=%s,repo_name=%s,repo_url=%s,stargazers_count=%s,user_login=%s,user_url=%s where id=%s',[myid,repo_name,repo_url,stargazers_count,user_login,user_url,myid])
                 else:
-                        cursor.execute('insert into projects (id,name,address) values (%s,%s,%s)',[myid,name,address])
+                        cursor.execute('insert into projects (id,repo_name,repo_url,stargazers_count,user_login,user_url) values (%s,%s,%s,%s,%s,%s)',[myid,repo_name,repo_url,stargazers_count,user_login,user_url])
                 conn.commit()
                 cursor.close()
                 conn.close()
