@@ -1,10 +1,10 @@
 # -*- coding: cp936 -*-
 import time
 from datetime import datetime
-import Save_language
-import Save_repositories
-import Save_starts
-import Save_locations
+from Save_language import Save_language
+from Save_repositories import Save_repositories
+from Save_starts import Save_starts
+from Save_locations import Save_locations
 
 
 def getdata():
