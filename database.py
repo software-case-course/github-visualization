@@ -198,13 +198,20 @@ class Database(object):
                 return n
         
         ##更新users表内容
-        def update_users_data(self,myid,name,address):
+        ##参数：myid:id号
+        ##      user_name:用户名
+        ##      user_url:用户github地址
+        ##      follower:关注度
+        ##      address:用户所在地
+        ##      repo_name:该用户代表项目名
+        ##      repo_url:项目地址
+        def update_users_data(self,myid,user_name,user_url,follower,address,repo_name,repo_url):
                 conn=mysql.connector.connect(user='root',password='eavG53JrMC',database='github_database',use_unicode=True)
                 cursor=conn.cursor()
                 if self.find_users_data(myid):
-                        cursor.execute('update users set name=%s,address=%s where id=%s',[name,address,myid])
+                        cursor.execute('update users set user_name=%s,user_url=%s,follower=%s,address=%s,repo_name=%s,repo_url=%s where id=%s',[user_name,user_url,follower,address,repo_name,repo_url,myid])
                 else:
-                        cursor.execute('insert into users (id,name,address) values (%s,%s,%s)',[myid,name,address])
+                        cursor.execute('insert into users (id,user_name,user_url,follower,address,repo_name,repo_url) values (%s,%s,%s,%s,%s,%s,%s)',[myid,user_name,user_url,follower,address,repo_name,repo_url])
                 conn.commit()
                 cursor.close()
                 conn.close()
