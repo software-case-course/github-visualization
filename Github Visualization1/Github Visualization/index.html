@@ -406,7 +406,7 @@ mychart_second.showLoading();
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="panel panel-default">                            
 							<div class="panel-heading">
-							Area Chart
+							活跃用户地区分布
 						</div>
                          <div id="first" style="height:600px"></div>
     <!-- ECharts单文件引入 -->
@@ -420,9 +420,9 @@ mychart_second.showLoading();
 });
 var option = {
     title: {
-        text: 'World Population (2010)',
-        subtext: 'from United Nations, Total population, both sexes combined, as of 1 July (thousands)',
-        sublink: 'http://esa.un.org/wpp/Excel-Data/population.htm',
+        text: '活跃地区用户数量',
+        subtext: '',
+        sublink: '',
         left: 'center',
         top: 'top'
     },
@@ -453,7 +453,7 @@ var option = {
         realtime: false,
         calculable: true,
         inRange: {
-            color: ['lightskyblue','yellow', 'orangered']
+            color: ['lightblue','yellow','hotpink']
         }
     },
     series: [
