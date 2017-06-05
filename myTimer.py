@@ -1,11 +1,11 @@
 # -*- coding: cp936 -*-
 import time
 from datetime import datetime
-from Save_language import Save_language
-from Save_repositories import Save_repositories
-from Save_starts import Save_starts
-from Save_locations import Save_locations
-
+import Save_language
+import Save_repositories
+import Save_starts
+import Save_locations
+import Save_users
 
 def getdata():
     #获取项目语言情况
@@ -20,6 +20,10 @@ def getdata():
     #获取前十项目详细情况
     starts = Save_starts.Save_starts()
     starts.Get_starts()
+    #获取前十用户详细信息
+    users = Save_users.Save_users()
+    users.Get_users()
+    
     
     
 if __name__ == "__main__":
