@@ -1,30 +1,31 @@
-# -*- coding: cp936 -*-
 import requests
 from datetime import date, time, datetime, timedelta
 import database
 
 class Save_locations(object):
 
-    #»ñÈ¡µØÇøÓÃ»§ÊıÁ¿Çé¿ö
-    #²ÎÊı£ºÎŞ
-    #·µ»ØÖµ£ºÎŞ
+    #è·å–é¡¹ç›®è¯­è¨€æƒ…å†µ
+    #å‚æ•°ï¼šæ— 
+    #è¿”å›å€¼ï¼šæ— 
     def Get_locations(self):
-        location=['America','US','USA','the United States','China','France','Germany','India','Russia','England','Britain','the United Kingdom','UK','Australia']
+        location=['America','US','USA','the United States','China','France','Germany','India','Russia','England','Britain','the United Kingdom','UK','Australia'
+                  ,'Canada','Denmark','Mexico','Brazil','Argentina','Japan','South Africa','Egypt','Sudan','Poland','Romania','Ireland','Sweden','Iraq','Kazakhstan'
+                  , 'Turkey','Italy','Niger']
         mydatabase=database.Database()
         now=datetime.now()
-        #Éè¶¨¸ô30ÃëºóÔÙ·ÃÎÊGitHub API
+        #è®¾å®šéš”30ç§’åå†è®¿é—®GitHub API
         period=timedelta(days=0,hours=0,minutes=0,seconds=30)
         next_time=now+period
         strnext_time=next_time.strftime('%Y-%m-%d %H:%M:%S')
         i=0
         j = 0
         count = 0
-        while True and i<14:
+        while True and i<32:
             iter_now=datetime.now()
             iter_now_time = iter_now.strftime('%Y-%m-%d %H:%M:%S')
             if str(iter_now_time)==str(strnext_time):
                 x=location[i]
-                #ÓÉÓÚÃÀ¹ú¸úÓ¢¹úµÄ±ğ³ÆÓĞºÜ¶à¸ö£¬Ã¿¸öÓÃ»§Ğ´ÏÂ¹ú¼®Ê±»áÓĞºÜ¶àÖÖĞ´·¨£¬Òò´ËĞèÒª²éÑ¯Ã¿¸ö±ğ³Æ¶ÔÓ¦µÄÓÃ»§ÓĞ¶àÉÙ£¬²¢°ÑÆä¼ÓÆğÀ´
+                #ç”±äºç¾å›½è·Ÿè‹±å›½çš„åˆ«ç§°æœ‰å¾ˆå¤šä¸ªï¼Œæ¯ä¸ªç”¨æˆ·å†™ä¸‹å›½ç±æ—¶ä¼šæœ‰å¾ˆå¤šç§å†™æ³•ï¼Œå› æ­¤éœ€è¦æŸ¥è¯¢æ¯ä¸ªåˆ«ç§°å¯¹åº”çš„ç”¨æˆ·æœ‰å¤šå°‘ï¼Œå¹¶æŠŠå…¶åŠ èµ·æ¥
                 if x == 'America' or x == 'England':
                     j = 4
                 response = requests.get('https://api.github.com/search/users?q=location:' + x).json()
