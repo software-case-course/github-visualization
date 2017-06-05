@@ -326,95 +326,77 @@ mychart_second.showLoading();
                 
 			
                 			
-                <div class="row">
+                 <div class="row">
                     <div class="col-md-12 col-sm-12 col-xs-12">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 Top10项目
                             </div> 
+                            <script>
+							$.ajax({
+								type:"GET",
+								async:true,
+								url:"http://blue.crystalsight.cn:8000/search/starts",
+								datatype:"json",
+								success: function (result) {
+                                 var obj = JSON.parse(result);//解析json字符串为json对象形式
+                                 var trStr = '';//动态拼接table
+								 for (var i = 0; i < obj.length; i++) {
+									 //循环遍历出json对象中的每一个数据并显示在对应的td中
+									 trStr += '<tr class="example">';//拼接处规范的表格形式
+                                     trStr += '<td width="15%" style="display:none" id="user">' + obj[i].NVFID + '</td>'; //数据表的主键值
+									 trStr += '<td>' + obj[i].id + '</td>';//对应数组表的字段
+									 trStr += '<td width="15%">' + obj[i].repo_name + '</td>'; 
+									 trStr += '<td width="15%">' + obj[i].repo_url + '</td>';
+									 trStr += '<td>' + obj[i].stargazers_count + '</td>';
+									 trStr += '<td>' + obj[i].user_login + '</td>';
+									 trStr += '<td>'+obj[i].user_url +'</td>';
+                                     /*经典之处，要将主键对应的值以json的形式进行传递，才能在后台使用*/
+									  trStr += '</tr>';  
+									   } 
+									    $("#tbody").html(trStr);//运用html方法将拼接的table添加到tbody中return;
+										 },
+										 error: function (error) {
+											  alert(error);
+											  }
+								
+							})
+							</script>
                             <div class="panel-body">
                                 <div class="table-responsive">
-                                  <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>序号</th>
-                                                <th>项目名</th>
-                                                <th>关注度</th>
-                                                <th>作者</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>1</td>
-                                                <td>github visualizer</td>
-                                                <td>1000</td>
-                                                <td>sshhu</td>
-                                            </tr>
-                                            <tr>
-                                                <td>2</td>
-                                                <td>vr sport</td>
-                                                <td>980</td>
-                                                <td>maya</td>
-                                            </tr>
-                                            <tr>
-                                                <td>3</td>
-                                                <td>moblie condition</td>
-                                                <td>830</td>
-                                                <td>lissy</td>
-                                            </tr>
-                                            <tr>
-                                                <td>4</td>
-                                                <td>intgame</td>
-                                                <td>800</td>
-                                                <td>shfgybj</td>
-                                            </tr>
-                                            <tr>
-                                                <td>5</td>
-                                                <td>AR</td>
-                                                <td>790</td>
-                                                <td>stect</td>
-                                            </tr>
-                                            <tr>
-                                                <td>6</td>
-                                                <td>jsoniterator</td>
-                                                <td>780</td>
-                                                <td>gccgy</td>
-                                            </tr>
-                                             <tr>
-                                                <td>7</td>
-                                                <td>heathy</td>
-                                                <td>778</td>
-                                                <td>cvdffy</td>
-                                            </tr>
-                                             <tr>
-                                                <td>8</td>
-                                                <td>moving</td>
-                                                <td>769</td>
-                                                <td>hcghv</td>
-                                            </tr>
-                                             <tr>
-                                                <td>9</td>
-                                                <td>sshyte</td>
-                                                <td>730</td>
-                                                <td>gfyftdyeh</td>
-                                            </tr>
-                                             <tr>
-                                                <td>10</td>
-                                                <td>dsfvch</td>
-                                                <td>600</td>
-                                                <td>sunshine</td>
-                                            </tr>
-
-                                        </tbody>
-                                  </table>
+                                 <table id="mainTable" class="display hover" border="1" style="height:400px">
+                                 <thead>
+                                  <tr>
+                                   <th>序号</th>
+                                   <th>项目名</th>
+                                   <th>项目链接</th>
+                                   <th>关注量</th>
+                                   <th>创建者</th>
+                                    <th>创建者链接</th>
+                                    </tr>
+                                     </thead>
+                                     <tbody id="tbody">
+                                     <tr id="content" class="example">
+                                      <td id="UserCode"></td>
+                                       <td id="UserName"></td>
+                                        <td id="UserPwd"></td>
+                                         <td id="Bmmc"></td>
+                                          <td id="Phone"></td>
+                                           </tr>
+                                            </tbody>
+                                             </table>
                                 </div>
                             </div>
+						
                         </div>
 
                   </div>
               </div>
                 <!-- /. ROW  -->
                 
+        
+       
+        
         
        
         
