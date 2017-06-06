@@ -79,3 +79,22 @@ def get_starts(request):
     response=HttpResponse(python_to_json)
     response['Access-Control-Allow-Origin']="*"
     return response
+
+def get_users(request):
+    mydatabase=database.Database()
+    new_list=mydatabase.read_users_data()
+    repositories=[]
+    for i in new_list:
+         new_dict={}
+         new_dict['id']=i[0]
+         new_dict['user_name']=i[1]
+         new_dict['user_url']=i[2]
+         new_dict['follower']=i[3]
+         new_dict['address']=i[4]
+         new_dict['repo_name']=i[5]
+         new_dict['repo_url']=i[6]
+         repositories.append(new_dict)
+    python_to_json=json.dumps(repositories,ensure_ascii=False)
+    response=HttpResponse(python_to_json)
+    response['Access-Control-Allow-Origin']="*"
+    return response
