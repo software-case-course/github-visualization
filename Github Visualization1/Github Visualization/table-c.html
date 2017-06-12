@@ -103,101 +103,81 @@
 									<th>项目名</th>
 									<th>项目作者</th>
 									<th>项目关注度</th>
-									<th>项目链接</th>
-                                    <th>作者链接</th>
+									
 									
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
                                     <td>1</td>
-									<td id="td11"><input id ="i11"></td>
-									<td id="td12"><input id ="i12"></td>
+									<td id="td11"><a href=""id=links11></a>
+									<td id="td12"><a href=""id=links12></a>
 									<td id="td13"><input id ="i13"></td>
-									<td id="td14"><a href=""id=links11>点击</a>
-                                    <td id="td15"><a href=""id=links12>点击</a>
+									
                                     
                                 </td>
 							  </tr>
 								<tr>
 									<td>2</td>
-									<td id="td21"><input id ="i21"></td>
-									<td id="td22"><input id ="i22"></td>
+									<td id="td21"><a href=""id=links21></a>
+									<td id="td22"><a href=""id=links22></a>
 									<td id="td23"><input id ="i23"></td>
-									<td id="td24"><a href=""id=links21>点击</a>
-                                    <td id="td25"><a href=""id=links22>点击</a>
 										
 								</tr>
                                 <tr>
 									<td>3</td>
-									<td id="td31"><input id ="i31"></td>
-									<td id="td32"><input id ="i32"></td>
+									<td id="td31"><a href=""id=links31></a>
+									<td id="td32"><a href=""id=links32></a>
 									<td id="td33"><input id ="i33"></td>
-									<td id="td34"><a href=""id=links31>点击</a>
-                                    <td id="td35"><a href=""id=links32>点击</a>
-										
+
 								</tr>
                                 <tr>
 									<td>4</td>
-									<td id="td41"><input id ="i41"></td>
-									<td id="td42"><input id ="i42"></td>
+									<td id="td41"><a href=""id=links41></a>
+									<td id="td42"><a href=""id=links42></a>
 									<td id="td43"><input id ="i43"></td>
-									<td id="td44"><a href=""id=links41>点击</a>
-                                    <td id="td45"><a href=""id=links42>点击</a>
 										
 								</tr>
                                 <tr>
 									<td>5</td>
-									<td id="td51"><input id ="i51"></td>
-									<td id="td52"><input id ="i52"></td>
+									<td id="td51"><a href=""id=links51></a>
+									<td id="td52"><a href=""id=links52></a>
 									<td id="td53"><input id ="i53"></td>
-									<td id="td54"><a href=""id=links51>点击</a>
-                                    <td id="td55"><a href=""id=links52>点击</a>
-										
+		
 								</tr>
                                 <tr>
 									<td>6</td>
-									<td id="td61"><input id ="i61"></td>
-									<td id="td62"><input id ="i62"></td>
+									<td id="td61"><a href=""id=links61></a>
+									<td id="td62"><a href=""id=links62></a>
 									<td id="td63"><input id ="i63"></td>
-									<td id="td64"><a href=""id=links61>点击</a>
-                                    <td id="td65"><a href=""id=links62>点击</a>
 										
 								</tr>
                                 <tr>
 									<td>7</td>
-									<td id="td71"><input id ="i71"></td>
-									<td id="td72"><input id ="i72"></td>
+									<td id="td71"><a href=""id=links71></a>
+									<td id="td72"><a href=""id=links72></a></td>
 									<td id="td73"><input id ="i73"></td>
-									<td id="td74"><a href=""id=links71>点击</a>
-                                    <td id="td75"><a href=""id=links72>点击</a></td>
-										
+	
 								</tr>
                                 <tr>
 									<td>8</td>
-									<td id="td81"><input id ="i81"></td>
-									<td id="td82"><input id ="i82"></td>
+									<td id="td81"><a href=""id=links81></a>
+									<td id="td82"><a href=""id=links82></a></td>
 									<td id="td83"><input id ="i83"></td>
-									<td id="td84"><a href=""id=links81>点击</a>
-                                    <td id="td85"><a href=""id=links82>点击</a></td>
-										
+
 								</tr>
                                  <tr>
 									<td>9</td>
-									<td id="td91"><input id ="i91"></td>
-									<td id="td92"><input id ="i92"></td>
+									<td id="td91"><a href=""id=links91></a>
+									<td id="td92"><a href=""id=links92></a></td>
 									<td id="td93"><input id ="i93"></td>
-									<td id="td94"><a href=""id=links91>点击</a>
-                                    <td id="td95"><a href=""id=links92>点击</a></td>
 										
 								</tr>
                                  <tr>
 									<td>10</td>
-									<td id="td101"><input id ="i101"></td>
-									<td id="td102"><input id ="i102"></td>
+									<td id="td101"><a href=""id=links101></a>
+									<td id="td102"><a href=""id=links102></a></td>
 									<td id="td103"><input id ="i103"></td>
-									<td id="td104"><a href=""id=links101>点击</a>
-                                    <td id="td105"><a href=""id=links102>点击</a></td>
 										
 								</tr>
 						  </tbody>
@@ -231,56 +211,68 @@
 					   for(var i=0;i<result_s.length;i++){
 						   userurl.push(result_s[i].user_url);
 					   } 
-					  document.getElementById('td11').innerHTML=''+names_s[0];
-					  document.getElementById('td12').innerHTML=''+res_s[0];
-					  document.getElementById('td13').innerHTML=stars[0];
 					  document.getElementById('links11').href=''+nums_s[0];
+					  document.getElementById('links11').text=''+names_s[0];
 					  document.getElementById('links12').href=''+userurl[0];
-					  document.getElementById('td21').innerHTML=''+names_s[1];
-					  document.getElementById('td22').innerHTML=''+res_s[1];
-					  document.getElementById('td23').innerHTML=stars[1];
+					  document.getElementById('links12').text=''+res_s[0];
+					  document.getElementById('td13').innerHTML=stars[0];
+	
 					  document.getElementById('links21').href=''+nums_s[1];
+					  document.getElementById('links21').text=''+names_s[1];
 					  document.getElementById('links22').href=''+userurl[1];
-					  document.getElementById('td31').innerHTML=''+names_s[2];
-					  document.getElementById('td32').innerHTML=''+res_s[2];
-					  document.getElementById('td33').innerHTML=stars[2];
+					  document.getElementById('links22').text=''+res_s[1];
+					  document.getElementById('td23').innerHTML=stars[1];
+					  
 					  document.getElementById('links31').href=''+nums_s[2];
+					  document.getElementById('links31').text=''+names_s[2];
 					  document.getElementById('links32').href=''+userurl[2];
-					  document.getElementById('td41').innerHTML=''+names_s[3];
-					  document.getElementById('td42').innerHTML=''+res_s[3];
-					  document.getElementById('td43').innerHTML=stars[3];
+					  document.getElementById('links32').text=''+res_s[2];
+					  document.getElementById('td33').innerHTML=stars[2];
+					
 					  document.getElementById('links41').href=''+nums_s[3];
+					  document.getElementById('links41').text=''+names_s[3];
 					  document.getElementById('links42').href=''+userurl[3];
-					  document.getElementById('td51').innerHTML=''+names_s[4];
-					  document.getElementById('td52').innerHTML=''+res_s[4];
-					  document.getElementById('td53').innerHTML=stars[4];
+					  document.getElementById('links42').text=''+res_s[3];
+					  document.getElementById('td43').innerHTML=stars[3];
+					  
+					 
+			
 					  document.getElementById('links51').href=''+nums_s[4];
-					  document.getElementById('links52').href=''+userurl[4];
-					  document.getElementById('td61').innerHTML=''+names_s[5];
-					  document.getElementById('td62').innerHTML=''+res_s[5];
-					  document.getElementById('td63').innerHTML=stars[5];
+					  document.getElementById('links51').text=''+names_s[4];
+					  document.getElementById('links52').href=''+userurl[4]
+					  document.getElementById('links52').text=''+res_s[4]
+					  document.getElementById('td53').innerHTML=stars[4];
+					 
 					  document.getElementById('links61').href=''+nums_s[5];
+					  document.getElementById('links61').text=''+names_s[5];
 					  document.getElementById('links62').href=''+userurl[5];
-					  document.getElementById('td71').innerHTML=''+names_s[6];
-					  document.getElementById('td72').innerHTML=''+res_s[6];
-					  document.getElementById('td73').innerHTML=stars[6];
-					  document.getElementById('links71').href=''+nums_s[6];
+					  document.getElementById('links62').text=''+res_s[5];
+					  document.getElementById('td63').innerHTML=stars[5];
+					 
+			          document.getElementById('links71').href=''+nums_s[6];
+					  document.getElementById('links71').text=''+names_s[6];
 					  document.getElementById('links72').href=''+userurl[6];
-					  document.getElementById('td81').innerHTML=''+names_s[7];
-					  document.getElementById('td82').innerHTML=''+res_s[7];
-					  document.getElementById('td83').innerHTML=stars[7];
+					  document.getElementById('links72').text=''+res_s[6];
+					  document.getElementById('td73').innerHTML=stars[6];
+					
 					  document.getElementById('links81').href=''+nums_s[7];
+					  document.getElementById('links81').text=''+names_s[7];
 					  document.getElementById('links82').href=''+nums_s[7];
-					  document.getElementById('td91').innerHTML=''+names_s[8];
-					  document.getElementById('td92').innerHTML=''+res_s[8];
-					  document.getElementById('td93').innerHTML=stars[8];
-					  document.getElementById('links91').href=''+nums_s[8];
+					  document.getElementById('links82').text=''+res_s[7];
+					  document.getElementById('td83').innerHTML=stars[7];
+					 
+				      document.getElementById('links91').href=''+nums_s[8];
+					  document.getElementById('links91').text=''+names_s[8];
 					  document.getElementById('links92').href=''+nums_s[8];
-					   document.getElementById('td101').innerHTML=''+names_s[9];
-					  document.getElementById('td102').innerHTML=''+res_s[9];
-					  document.getElementById('td103').innerHTML=stars[9];
+					  document.getElementById('links92').text=''+res_s[8];
+					  document.getElementById('td93').innerHTML=stars[8];
+					 
+					  
 					  document.getElementById('links101').href=''+nums_s[9];
+					  document.getElementById('links101').text=''+names_s[9];
 					  document.getElementById('links102').href=''+nums_s[9];
+					  document.getElementById('links102').text=''+res_s[9];
+					  document.getElementById('td103').innerHTML=stars[9];
 					 }
 					 
 					 })			
