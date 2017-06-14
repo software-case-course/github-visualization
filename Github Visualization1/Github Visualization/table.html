@@ -75,82 +75,208 @@
         <!-- /. NAV SIDE  -->
         <div id="page-wrapper" >
 		  <div class="header"> 
-                        <h1 class="page-header">
-                            top10用户
-                        </h1>
-						<ol class="breadcrumb">
-					  <li><a href="#">Home</a></li>
-					  <li><a href="#">Tables</a></li>
-					  <li class="active">Data</li>
-					</ol> 
-									
-		</div>
-		
-            <div class="panel-heading">
+                       <div class="panel-heading">
                                 Top10用户
                             </div> 
-                             <script>
-                            $.ajax({
-                                type:"GET",
-                                async:true,
-                                url:"http://blue.crystalsight.cn:8000/search/users",
-                                datatype:"json",
-                                success: function (results) {
-                                 var objs = JSON.parse(results);//解析json字符串为json对象形式
-                                 var trStrs = '';//动态拼接table
-                                 for (var i = 0; i < objs.length; i++) {
-                                     //循环遍历出json对象中的每一个数据并显示在对应的td中
-                                     trStrs += '<tr class="example">';//拼接处规范的表格形式
-                                     trStrs += '<td>' + objs[i].id + '</td>';//对应数组表的字段
-                                     trStrs += '<td >' + objs[i].user_name + '</td>';                                     
-                                     trStrs += '<td >' + objs[i].follower + '</td>';
-                                     trStrs += '<td >' + objs[i].address + '</td>';
-                                     trStrs += '<td >' + objs[i].user_url + '</td>'; 
-                                     trStrs += '<td>' + objs[i].repo_url + '</td>';
-                                     trStrs += '<td>'+objs[i].repo_name +'</td>';
-                                     /*经典之处，要将主键对应的值以json的形式进行传递，才能在后台使用*/
-                                      trStrs += '</tr>';  
-                                       } 
-                                        $("#tbodys").html(trStrs);//运用html方法将拼接的table添加到tbody中return;
-                                         },
-                                         error: function (error) {
-                                              alert(error);
-                                              }
-                                
-                            })
-                            </script>
                             <div class="panel-body">
-                                <div class="table-responsive">
-                                  <table class="table table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>序号</th>
-                                                <th>姓名</th>
-                                                <th>关注度</th>
-                                                <th>地区</th>
-                                                <th>用户信息</th>
-                                                <th>代表项目</th>
-                                                <th>代表作链接</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody id="tbodys">
-                                           <tr id="contents" class="example">
-                                      <td id="UserCodes"></td>
-                                       <td id="UserNames"></td>
-                                        <td id="UserPwds"></td>
-                                         <td id="Bmmcs"></td>
-                                          <td id="Phones"></td>
-                                          <td id="Links"></td>
-                                           </tr>
-
-                                        </tbody>
-                                  </table>
-                                </div>
-                            </div>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                <tr>
+                                    <th>排名</th>
+                                    <th>姓名</th>
+                                    <th>关注度</th>
+                                    <th>地区</th>
+                                    <th>代表作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td id="tdd11"><a href=""id=lin11></a></td>
+                                    <td id="tdd12"><input id="ii12"></td>
+                                    <td id="tdd13"><input id="ii13"></td>
+                                    <td id="tdd14"><a href=""id =lin14></a></td>
+                              </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td id="tdd21"><a href=""id=lin21></a></td>
+                                    <td id="tdd22"><input id="ii22"></td>
+                                    <td id="tdd23"><input id="ii23"></td>
+                                    <td id="tdd24"><a href=""id =lin24></a></td>
+                              </tr>
+                               <tr>
+                                    <td>3</td>
+                                    <td id="tdd31"><a href=""id=lin31></a></td>
+                                    <td id="tdd32"><input id="ii32"></td>
+                                    <td id="tdd33"><input id="ii33"></td>
+                                    <td id="tdd34"><a href=""id =lin34></a></td>
+                              </tr>
+                               <tr>
+                                    <td>4</td>
+                                    <td id="tdd41"><a href=""id=lin41></a></td>
+                                    <td id="tdd42"><input id="ii42"></td>
+                                    <td id="tdd43"><input id="ii43"></td>
+                                    <td id="tdd44"><a href=""id =lin44></a></td>
+                              </tr>
+                                 <tr>
+                                    <td>5</td>
+                                    <td id="tdd51"><a href=""id=lin51></a></td>
+                                    <td id="tdd52"><input id="ii52"></td>
+                                    <td id="tdd53"><input id="ii53"></td>
+                                    <td id="tdd54"><a href=""id =lin54></a></td>
+                              </tr>
+                                 <tr>
+                                    <td>6</td>
+                                    <td id="tdd61"><a href=""id=lin61></a></td>
+                                    <td id="tdd62"><input id="ii62"></td>
+                                    <td id="tdd63"><input id="ii63"></td>
+                                    <td id="tdd64"><a href=""id =lin64></a></td>
+                              </tr>
+                                <tr>
+                                    <td>7</td>
+                                    <td id="tdd71"><a href=""id=lin71></a></td>
+                                    <td id="tdd72"><input id="ii72"></td>
+                                    <td id="tdd73"><input id="ii73"></td>
+                                    <td id="tdd74"><a href=""id =lin74></a></td>
+                              </tr>
+                                 <tr>
+                                    <td>8</td>
+                                    <td id="tdd81"><a href=""id=lin81></a></td>
+                                    <td id="tdd82"><input id="ii82"></td>
+                                    <td id="tdd83"><input id="ii83"></td>
+                                    <td id="tdd84"><a href=""id =lin84></a></td>
+                              </tr>
+                                 <tr>
+                                    <td>9</td>
+                                    <td id="tdd91"><a href=""id=lin91></a></td>
+                                    <td id="tdd92"><input id="ii92"></td>
+                                    <td id="tdd93"><input id="ii93"></td>
+                                    <td id="tdd94"><a href=""id =lin94></a></td>
+                              </tr>
+                                  <tr>
+                                    <td>10</td>
+                                    <td id="tdd101"><a href=""id=lin101></a></td>
+                                    <td id="tdd102"><input id="ii102"></td>
+                                    <td id="tdd103"><input id="ii103"></td>
+                                    <td id="tdd104"><a href=""id =lin104></a></td>
+                              </tr>
+                          </tbody>
+                        </table></div>
+                         <script>
+                     var username=[];
+                     var foll=[];    
+                     var add=[]; 
+                     var userurl=[]; 
+                     var repourl=[]; 
+                     var reponame=[];
+                     $.ajax({
+                     type : "get",
+                     async : true,            
+                     url : "http://blue.crystalsight.cn:8000/search/users",    
+                     dataType : "json",        
+                     success : function(result_s){
+           
+                    for(var i=0;i<result_s.length;i++){  
+                       username.push(result_s[i].user_name); 
+                     }
+                      
+                    for(var i=0;i<result_s.length;i++){       
+                       foll.push(result_s[i].follower);      
+                      }
+                       for(var i=0;i<result_s.length;i++) {  
+                              add.push(result_s[i].address);
+                       }
+                       for(var i=0;i<result_s.length;i++){
+                           userurl.push(result_s[i].user_url);
+                       } 
+                       for(var i=0;i<result_s.length;i++){
+                           repourl.push(result_s[i].repo_url);
+                       } 
+                       for(var i=0;i<result_s.length;i++){
+                           reponame.push(result_s[i].repo_name);
+                       } 
+                      document.getElementById('lin11').href=''+userurl[0];
+                      document.getElementById('lin11').text=''+username[0];
+                      document.getElementById('tdd12').innerHTML=foll[0];
+                      document.getElementById('tdd13').innerHTML=add[0];
+                      document.getElementById('lin14').href=''+repourl[0];
+                      document.getElementById('lin14').text=''+reponame[0];
+    
+                      document.getElementById('lin21').href=''+userurl[1];
+                      document.getElementById('lin21').text=''+username[1];
+                      document.getElementById('tdd22').innerHTML=foll[1];
+                      document.getElementById('tdd23').innerHTML=add[1];
+                      document.getElementById('lin24').href=''+repourl[1];
+                      document.getElementById('lin24').text=''+reponame[1];
+                      
+                      document.getElementById('lin31').href=''+userurl[2];
+                      document.getElementById('lin31').text=''+username[2];
+                      document.getElementById('tdd32').innerHTML=foll[2];
+                      document.getElementById('tdd33').innerHTML=add[2];
+                      document.getElementById('lin34').href=''+repourl[2];
+                      document.getElementById('lin34').text=''+reponame[2];
+                    
+                      document.getElementById('lin41').href=''+userurl[3];
+                      document.getElementById('lin41').text=''+username[3];
+                      document.getElementById('tdd42').innerHTML=foll[3];
+                      document.getElementById('tdd43').innerHTML=add[3];
+                      document.getElementById('lin44').href=''+repourl[3];
+                      document.getElementById('lin44').text=''+reponame[3];
+                      
+                     
+            
+                      document.getElementById('lin51').href=''+userurl[4];
+                      document.getElementById('lin51').text=''+username[4];
+                      document.getElementById('tdd52').innerHTML=foll[4];
+                      document.getElementById('tdd53').innerHTML=add[4];
+                      document.getElementById('lin54').href=''+repourl[4];
+                      document.getElementById('lin54').text=''+reponame[4];
+                     
+                      document.getElementById('lin61').href=''+userurl[5];
+                      document.getElementById('lin61').text=''+username[5];
+                      document.getElementById('tdd62').innerHTML=foll[5];
+                      document.getElementById('tdd63').innerHTML=add[5];
+                      document.getElementById('lin64').href=''+repourl[5];
+                      document.getElementById('lin64').text=''+reponame[5];
+                     
+                      document.getElementById('lin71').href=''+userurl[6];
+                      document.getElementById('lin71').text=''+username[6];
+                      document.getElementById('tdd72').innerHTML=foll[6];
+                      document.getElementById('tdd73').innerHTML=add[6];
+                      document.getElementById('lin74').href=''+repourl[6];
+                      document.getElementById('lin74').text=''+reponame[6];
+                    
+                      document.getElementById('lin81').href=''+userurl[7];
+                      document.getElementById('lin81').text=''+username[7];
+                      document.getElementById('tdd82').innerHTML=foll[7];
+                      document.getElementById('tdd83').innerHTML=add[7];
+                      document.getElementById('lin84').href=''+repourl[7];
+                      document.getElementById('lin84').text=''+reponame[7];
+                     
+                      document.getElementById('lin91').href=''+userurl[8];
+                      document.getElementById('lin91').text=''+username[8];
+                      document.getElementById('tdd92').innerHTML=foll[8];
+                      document.getElementById('tdd93').innerHTML=add[8];
+                      document.getElementById('lin94').href=''+repourl[8];
+                      document.getElementById('lin94').text=''+reponame[8];
+                     
+                      
+                      document.getElementById('lin101').href=''+userurl[9];
+                      document.getElementById('lin101').text=''+username[9];
+                      document.getElementById('tdd102').innerHTML=foll[9];
+                      document.getElementById('tdd103').innerHTML=add[9];
+                      document.getElementById('lin104').href=''+repourl[9];
+                      document.getElementById('lin104').text=''+reponame[9];
+                     
+                     }
+                     
+                     })         
+                    </script>
+                            
                         </div>
-
-                    </div>
-                </div>
+                        </div>
+              </div>
                 <!-- /. ROW  -->
            
                 
